@@ -1,0 +1,23 @@
+---
+- hosts: mygroup
+  remote_user: root
+  tasks:
+  - name: Run a command as user wfuser
+    shell: "id"
+    become: yes
+    become_method: sudo
+    become_user: wfuser
+    register: myid
+
+  - name: Print id - wfuser
+    debug:
+      msg: "{{ myid }}"
+
+  - name: Run a command as user wfuser
+    shell: "id"
+    register: myid1
+
+  - name: Print id - root
+    debug:
+      msg: "{{ myid1 }}"
+

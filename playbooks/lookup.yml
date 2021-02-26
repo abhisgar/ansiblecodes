@@ -1,0 +1,7 @@
+---
+- hosts: mygroup
+  vars:
+   contents: "{{ lookup('file', '/etc/ansible/playbooks/foo.txt') }}" 
+  tasks:
+  - debug:
+     msg: "The value of file foo is {{ contents }}"

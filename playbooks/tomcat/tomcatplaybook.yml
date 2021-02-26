@@ -1,0 +1,33 @@
+---
+- hosts: mygroup
+  remote_user: root
+
+  tasks:
+  - name: copy package files to production
+    copy: src="{{ item }}" dest="/tmp/"
+    with_items:
+    - /etc/ansible/playbooks/tomcat/devops-ansibleserver.zip
+    - /etc/ansible/playbooks/tomcat/jre-8u45-linux-x64.rpm
+    - /etc/ansible/playbooks/tomcat/tomcat-7.0.76-9.el7_6.noarch.rpm
+    ignore_errors: yes
+
+  - name: Install JRE rpm
+    package: name=jre state=present
+
+  - name: Install tomcat rpm
+    package: name=tomcat state=present
+
+  - name: copy package files to production
+    copy: src="/etc/ansible/playbooks/tomcat/hello.war" dest="/usr/share/tomcat/webapps/"
+    ignore_errors: yes
+
+  - name: copy jar
+    copy:
+      src: "/etc/ansible/playbooks/tomcat-7.0.26.tomcat-juli.jar"
+      dest: "/usr/share/tomcat/bin/tomcat-juli.jar"
+      mode: 0644
+
+  - name: start service tomcat
+    service: name=tomcat state=started
+
+  

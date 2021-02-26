@@ -1,0 +1,23 @@
+---
+- hosts: mygroup
+
+  tasks:
+  - name: install package
+    package: name="{{ item }}" state=present 
+    with_items:
+    - httpd
+    - git
+    - docker
+
+  - name: write the apache config file
+    copy:
+      src: "/etc/ansible/playbooks/httpd.conf"
+      dest: "/etc/httpd/conf/httpd.conf"
+    notify:
+    - restart apache
+
+  handlers:
+  - name: restart apache
+    service:
+      name: httpd
+      state: restarted

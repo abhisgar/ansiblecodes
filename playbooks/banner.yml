@@ -1,0 +1,26 @@
+---
+- hosts: mygroup
+  vars:
+    myname: "Abhishek Garg"
+  tasks:
+  - name: running command
+    shell: 'uptime'
+    register: myvar
+
+  - name: running command
+    shell: 'date'
+    register: myvar2
+
+  - name: print myvar
+    debug:
+      msg: "{{ myvar }}"
+
+  - name: print myvar
+    debug:
+      msg: "{{ myvar2 }}"
+
+  - name: sample template
+    template:
+      src: '/etc/ansible/playbooks/sample.j2'
+      dest: '/etc/motd'
+

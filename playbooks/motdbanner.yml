@@ -1,0 +1,19 @@
+---
+- hosts : mygroup
+  vars: 
+    header: "Welcome to Ansible World"
+    footer: "- Wells Fargo"
+    author: "Abhishek Garg"
+  tasks:
+  - name: getting uptime
+    shell: "uptime | awk '{print $3}' | sed 's/,//g'"
+    register: server_uptime
+
+  - name: print server_uptime
+    debug:
+      msg: "{{ server_uptime }}"
+
+  - name: generate banner
+    template:
+      src: '/etc/ansible/playbooks/motdsample.j2'
+      dest: '/etc/motd'

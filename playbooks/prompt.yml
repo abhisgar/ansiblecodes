@@ -1,0 +1,12 @@
+---
+- hosts: mygroup
+  vars_prompt:
+  - name: "myname"
+    prompt: "What is your name?"
+  - name: "quest"
+    prompt: "What is your quest?"
+
+  tasks:
+  - debug:
+      msg: "{{ myname }} {{ quest }}"
+

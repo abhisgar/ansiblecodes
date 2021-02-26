@@ -1,0 +1,25 @@
+---
+- hosts: mygroup
+  tasks:
+  - name: check url is accessible or not
+    uri:
+      url: "https://www.ogle.com"
+    register: output
+
+  - name: print code
+    debug:
+      msg: "return code is {{ output.status }}"
+
+  - name: print failure
+    debug:
+      msg: 'Site not accessible!!!'
+    when: output.status != 200
+
+  - name: print Success
+    debug:
+      msg: 'Site accessible!!!'
+    when: output.status == 200 
+    
+#  - name: success condition true?
+#    debug:
+      

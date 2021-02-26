@@ -1,0 +1,6 @@
+---
+# vars file for banner
+header: "Welcome to Ansible World"
+footer: "- Wells Fargo India"
+author: "Abhishek Garg"
+

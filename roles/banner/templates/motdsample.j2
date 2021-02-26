@@ -1,0 +1,12 @@
+{{ '-' * 75 }}
+			{{ header }}
+{{ '-' * 75 }}
+		Host Name	:	{{ ansible_hostname }}
+		Operating System:	{{ ansible_distribution }} {{ ansible_distribution_version }}
+		IP Address	:	{{ ansible_default_ipv4.address }}
+		Current Time	:	{{ ansible_date_time.date }} {{ ansible_date_time.time }} {{ ansible_date_time.tz }}
+		Uptime		:	{{ server_uptime.stdout }}
+		Author		:	{{ author }}
+{{ '-' * 75 }}
+                        	  {{ footer }}
+{{ '-' * 75 }}

@@ -1,0 +1,9 @@
+---
+- hosts: mygroup
+  remote_user: root
+
+  tasks:
+  - name: Create group sysadmins
+    group: name=sysadmins state=present
+  - name: Create user alvis and add to group sysadmins
+    user: name=alvis state=present groups=sysadmins  

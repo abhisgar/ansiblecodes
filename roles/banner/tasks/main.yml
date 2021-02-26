@@ -1,0 +1,16 @@
+---
+# tasks file for banner
+- name: getting uptime
+  shell: "uptime | awk '{print $3}' | sed 's/,//g'"
+  register: server_uptime
+
+- name: print server_uptime
+  debug:
+    msg: "{{ server_uptime }}"
+
+- name: generate banner
+  template:
+    src: '/etc/ansible/roles/banner/templates/motdsample.j2'
+    dest: '/etc/motd'
+  notify:
+  - restart apache

@@ -1,0 +1,5 @@
+---
+- hosts: mygroup
+  tasks:
+  - name: copy file to prod server destination
+    copy: src="/etc/ansible/playbooks/startapache.yml" dest="/tmp/startapache.yml" backup=yes

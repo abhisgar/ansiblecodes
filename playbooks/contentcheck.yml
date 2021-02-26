@@ -1,0 +1,26 @@
+---
+- hosts: mygroup
+  tasks:
+  - name: check url is accessible or not
+    uri:
+      url: "https://www.atgensoft.com"
+      return_content: yes
+    register: output
+
+  - name: Print output
+    debug:
+      msg: "{{ output }}"
+  - name: print failure
+    debug:
+      msg: 'Site not accessible!!!'
+    when: "'DevOps' not in output.content"
+
+  - name: print Success
+    debug:
+      msg: 'Site accessible!!!'
+    when: "'DevOps' in output.content"
+
+    
+#  - name: success condition true?
+#    debug:
+      

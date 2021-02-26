@@ -1,0 +1,8 @@
+---
+- hosts: mygroup
+
+  tasks:
+  - name: create a group testgroup
+    group: name=testgroup state=present
+  - name: add user elvis
+    user: name=elvis state=present password='$1$2rL9bNAg$di9LGS57ROtGX6WXNshBq0' group=testgroup 

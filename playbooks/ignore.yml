@@ -1,0 +1,14 @@
+---
+- hosts: mygroup
+  tasks:
+  - name: Print before
+    debug:
+      msg: "before"
+
+  - name: copy file to prod server destination
+    copy: src="/etc/nosuchfile.yml" dest="/tmp/startapache.yml"
+    ignore_errors: yes
+
+  - name: Print before
+    debug:
+      msg: "before"

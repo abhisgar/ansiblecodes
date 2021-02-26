@@ -1,0 +1,6 @@
+---
+- hosts: mygroup
+
+  tasks:
+  - name: install package
+    package: name=git state=present 

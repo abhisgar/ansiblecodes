@@ -1,0 +1,16 @@
+---
+- hosts: mygroup
+  tasks:
+
+  - name: Create groups
+    group:
+      name: "grp{{ item }}"
+      state: present
+    with_sequence: count=4 
+
+  - name: create user and assign to group
+    user:
+      name: "abhi{{ item }}"
+      state: present
+      group: "grp{{ item }}"
+    with_sequence: count=4

@@ -1,0 +1,4 @@
+---
+- hosts: mygroup
+  roles:
+    - banner
